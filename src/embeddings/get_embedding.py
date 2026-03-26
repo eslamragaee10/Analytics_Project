@@ -9,7 +9,7 @@ class BGEM3Embeddings(Embeddings):
     
     """
     
-    def __init__(self , model_name = "bge-m3" , base_url = "http://localhost:11434" , temperature = 0.8):
+    def __init__(self , model_name = "bge-m3" , base_url = "http://localhost:11434" , temperature = 0.0):
         """
         initalize BGE-M3 embedding model from Ollama.
         
@@ -46,7 +46,9 @@ class BGEM3Embeddings(Embeddings):
                 prompt=text
             )
             
-        return reponse
+            embeddings.append(reponse['embedding'])
+            
+        return embeddings
             
     def embed_query(self, text):
         
@@ -66,4 +68,4 @@ class BGEM3Embeddings(Embeddings):
                 model=self.model,
                 prompt=text
             )
-        return reponse
+        return reponse['embedding']
